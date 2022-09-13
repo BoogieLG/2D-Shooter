@@ -5,15 +5,11 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-
-    [SerializeField] private float 
-        rotationSpeed, moveSpeed, bulletDamage, bulletSpeed, fireRate;
-    public float MoveSpeed => moveSpeed;
-    public float BulletDamage => bulletDamage;
-    public float BulletSpeed => bulletSpeed;
-
+    private StatsComponent statsComponent;
+    private WeaponComponent weaponComponent;
     private Rigidbody2D rb;
     private PlayerInput playerInput;
+
     private InputAction moveAction;
     private InputAction mouseAction;
     private InputAction attackAction;
@@ -22,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public Vector2 LookDirection => lookDirection;
     private void Awake()
     {
+        statsComponent = GetComponent<StatsComponent>();
+        weaponComponent = GetComponentInChildren<WeaponComponent>();
         rb = GetComponent<Rigidbody2D>();
         playerInput = GetComponent<PlayerInput>();
 
@@ -31,9 +29,9 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        if (attackAction.WasPressedThisFrame())
+        if (attackAction.IsPressed())
         {
-            ObjectPooler.instance.SpawnFromPool(BulletType.Simple, transform.position, this);
+            weaponComponent.MakeFire();
         }
     }
     private void FixedUpdate()
@@ -45,7 +43,7 @@ public class PlayerController : MonoBehaviour
     private void Movement()
     {
         Vector2 moveInput = new Vector2(moveAction.ReadValue<Vector2>().x, moveAction.ReadValue<Vector2>().y);
-        rb.velocity = moveInput * moveSpeed;
+        rb.velocity = moveInput * statsComponent.Speed;
     }
 
     private void LookRotation()

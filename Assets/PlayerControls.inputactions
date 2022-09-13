@@ -15,15 +15,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "fb75f38b-04f1-4472-b0d9-79e7fc938c32",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Attack",
                     "type": "Button",
                     "id": "eaeedd7e-0fee-4a74-9411-fa23405ac3e6",
@@ -127,17 +118,6 @@
                 },
                 {
                     "name": "",
-                    "id": "1c287276-7ff4-47ea-aafb-10860c424e6c",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d740179c-c6b3-4fb4-a007-46cc0898417c",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -186,7 +166,7 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard",
                     "action": "OpenCloseMenu",
                     "isComposite": false,
                     "isPartOfComposite": false

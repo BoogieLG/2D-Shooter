@@ -46,7 +46,7 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
-    public GameObject SpawnFromPool(BulletType bulletType, Vector3 position, PlayerController playerController)
+    public GameObject SpawnFromPool(BulletType bulletType, Vector3 position, WeaponComponent weaponComponent)
     {
         if (!poolDictionary.ContainsKey(bulletType))
         {
@@ -57,7 +57,7 @@ public class ObjectPooler : MonoBehaviour
         GameObject objectToSpawn = poolDictionary[bulletType].Dequeue();
         objectToSpawn.SetActive(true);
         objectToSpawn.transform.position = position;
-        objectToSpawn.GetComponent<BulletController>().SetStats(playerController);
+        objectToSpawn.GetComponent<BulletController>().SetStats(weaponComponent);
 
         poolDictionary[bulletType].Enqueue(objectToSpawn);
 
